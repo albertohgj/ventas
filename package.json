@@ -1,0 +1,27 @@
+{
+  "name": "proyecto-ventas-g2",
+  "version": "1.0.0",
+  "description": "Proyecto final grupo 2 - API ventas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/albertohgj/ventas.git"
+  },
+  "keywords": [
+    "g2",
+    "ventas",
+    "bedu"
+  ],
+  "author": "Julio, Edgar, CNCN",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/albertohgj/ventas/issues"
+  },
+  "homepage": "https://github.com/albertohgj/ventas#readme",
+  "dependencies": {
+    "pg": "^8.8.0"
+  }
+}
