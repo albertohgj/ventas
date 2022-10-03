@@ -5,7 +5,15 @@ const sequelize = require('../config/db.js');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken'); 
 
-const User = sequelize.define('usuarios',{
+
+const User = sequelize.define('usuar',{
+    usro_idUsro:{
+        type: DataTypes.INTEGER,
+        allowNull:false,
+        unique: true,
+        autoIncrement: true,
+        primaryKey: true
+    },
     usro_nmbrUsro:{
         type : DataTypes.CHAR(64),
         allowNull:false,
@@ -46,6 +54,7 @@ const User = sequelize.define('usuarios',{
     }
 });
 
+User.sync();
 
 User.createPassword = function(plaintext){
     const salt = crypto.randomBytes(16).toString('hex');
