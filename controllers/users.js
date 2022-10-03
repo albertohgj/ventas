@@ -5,6 +5,9 @@ async function signUp (req, res){
     let body = req.body;
     try{
         const user = await User.create(body);
+        const {salt, hash} = User.createPassword(body["usro_password"]);
+        user.usro_psswSalt=salt;
+        user.usro_psswHash=hash;
         await user.save();
         response.status(201).json(user);
     }catch(error){
@@ -14,8 +17,30 @@ async function signUp (req, res){
 }
 
 async function getUsers(req, res){
-    const users = await User.findAll();
+    const users = await User.findAll({where:{usro_activo:"1"}});
     res.status(200).json(users);
 }
 
-module.exports = {signUp, getUsers};
+
+async function updateUser(req, res){
+    const id=req.params.id;
+    const user = req.body;
+    const update = await User.update(user, {where:{id}});
+    const  userUpdated = await User.findByPk(id);
+    res.status(200).json(userUpdated);
+}
+
+async function deleteUser(req, res){
+    const id = req.params.id;
+    const user = req.body;
+    const update = await User.update(user, {where:{id}});
+    const  userUpdated = await User.findByPk(id);
+    res.status(200).json(update);
+}
+
+module.exports = {
+    signUp, 
+    getUsers,
+    updateUser,
+    deleteUser
+    };
