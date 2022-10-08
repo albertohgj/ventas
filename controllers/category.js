@@ -13,7 +13,6 @@ async function addCategory(req, res){
 
     }
     catch(err){
-        console.log(err);
         res.status(401).json(err);
     }
 }
@@ -27,8 +26,6 @@ async function getCategories(req, res){
 async function updateCategory(req, res){
     const id=req.params.id;
     const category = req.body;
-    console.log("****************************");
-
     const update = await Category.update(category, {where:{ctCt_idCtlgCtgr:id}});
     const categoryUpdated = await Category.findByPk(id);
     res.status(200).json(categoryUpdated);
