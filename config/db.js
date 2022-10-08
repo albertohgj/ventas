@@ -1,11 +1,9 @@
 
+require('dotenv').config();
 const {Sequelize} = require('sequelize');
 
-//PRD
-//const sequelize = new Sequelize('postgres://qnzplkqfqzsoax:abc165e5809111453be46555790860fffaf6c4675336bd81683dc44ce4e85c9a@ec2-35-168-122-84.compute-1.amazonaws.com:5432/dc2h7ffjnivhm2') // Example for postgres
 
-//DEV
-const sequelize = new Sequelize('postgres://qnzplkqfqzsoax:abc165e5809111453be46555790860fffaf6c4675336bd81683dc44ce4e85c9a@ec2-35-168-122-84.compute-1.amazonaws.com:5432/dc2h7ffjnivhm2',
+const sequelize = new Sequelize(process.env.DATABASE_URL,
 {
     logging: false,   //Loging disabled
     dialectOptions: {
@@ -16,12 +14,11 @@ const sequelize = new Sequelize('postgres://qnzplkqfqzsoax:abc165e5809111453be46
     }
 });
 
-
 pruebaConex();
-
 async function pruebaConex(){
     try{
         await sequelize.authenticate();
+        await sequelize.sync();
         console.log('Conexión exitosa a la BD');
     }
     catch(e){

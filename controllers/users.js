@@ -9,7 +9,7 @@ async function signUp (req, res){
         user.usro_psswSalt=salt;
         user.usro_psswHash=hash;
         await user.save();
-        response.status(201).json(user);
+        res.status(201).json(user);
     }catch(error){
         console.log(error);
         return res.status(400).json(error);
@@ -25,7 +25,7 @@ async function getUsers(req, res){
 async function updateUser(req, res){
     const id=req.params.id;
     const user = req.body;
-    const update = await User.update(user, {where:{id}});
+    const update = await User.update(user, {where:{usro_idUsro:id}});
     const  userUpdated = await User.findByPk(id);
     res.status(200).json(userUpdated);
 }
@@ -33,7 +33,7 @@ async function updateUser(req, res){
 async function deleteUser(req, res){
     const id = req.params.id;
     const user = req.body;
-    const update = await User.update(user, {where:{id}});
+    const update = await User.update(user, {where:{usro_idUsro:id}});
     const  userUpdated = await User.findByPk(id);
     res.status(200).json(update);
 }
