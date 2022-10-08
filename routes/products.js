@@ -13,6 +13,4 @@ router.post('/addProduct', addProduct);
 router.patch('/:id', updateProduct);
 router.patch('/:id', deleteProduct);
 
-
-
 module.exports = router;

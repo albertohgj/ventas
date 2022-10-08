@@ -27,6 +27,6 @@ const Category = sequelize.define('CtlgCtgr',{
 
 );
 
-Category.sync();
+//Category.sync();
 
 module.exports = Category;
