@@ -31,7 +31,7 @@ async function deleteProduct(req, res){
     const id = req.params.id;
     const product = req.body;
     const update = await Product.update(product, {where:{ctPr_idCtlgPrdc:id}});
-    const  productUpdated = await Category.findByPk(id);
+    const  productUpdated = await Product.findByPk(id);
     res.status(200).json(productUpdated);
 }
 

@@ -6,11 +6,11 @@ const options = {
             description: "Api de ventas Proyecto BEDU"
         }
     ,
-    servers:[
-        {
-            urs: "http://loscalhost:3000"
-        }
-    ],
+    bearerAuth: {
+        type: "http",
+        scheme: "bearer",
+      },
+
 },
     apis: ["./routes/*.js"]
 }

@@ -14,6 +14,8 @@ const {
  * /sales:
  *   get:
  *     description: obtener el listado de ventas
+ *     security: 
+ *       - Bearer: []
  *     tags:
  *       - get sale
  *     responses:
@@ -38,6 +40,8 @@ router.get('/',auth.required, getSales)
  * /sales/:id:
  *   get:
  *     description: obtener el detalle de una venta
+ *     security: 
+ *       - Bearer: []
  *     tags:
  *       - get sale detail
  *     parameters:
@@ -70,6 +74,8 @@ router.get('/:id',auth.required, getSale)
  * /sales/addSales:
  *   post:
  *     description: Crear una venta
+ *     security: 
+ *       - Bearer: []
  *     tags:
  *       - add sale
  *     parameters:
@@ -82,25 +88,25 @@ router.get('/:id',auth.required, getSale)
  *        - name: Vn_idCtlgMnda
  *          in: body
  *          schema:
- *              type: int
+ *              type: integer
  *              description: moneda de la venta
  *              required: true
  *        - name: Vn_pagado
  *          in: body
  *          schema:
- *              type: int
+ *              type: integer
  *              description: pagado o pendiente
  *              required: true
  *        - name: Vn_idCtlgFrmaPago
  *          in: body
  *          schema:
- *              type: int
+ *              type: integer
  *              description: forma de pago
  *              required: true
  *        - name: Vn_activo
  *          in: body
  *          schema:
- *              type: int
+ *              type: integer
  *              description: estatus de la venta
  *              required: true
  *        - name: VnDetalle
@@ -131,6 +137,8 @@ router.post('/addSales',auth.required, addSales);
  * /sales/delete:
  *   patch:
  *     description: Borrado lógico de ventas
+ *     security: 
+ *       - Bearer: []
  *     tags:
  *       - delete logical sales
  *     parameters:

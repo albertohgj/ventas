@@ -33,7 +33,7 @@ const {
  *        - name: usro_idCtlgTipoUsro
  *          in: body
  *          schema:
- *              type: string
+ *              type: integer
  *              description: tipo de usuario (1 admin, 2 usuario)
  *              required: true
 *        - name: usro_email
@@ -45,7 +45,7 @@ const {
  *        - name: usro_usroCrcn
  *          in: body
  *          schema:
- *              type: string
+ *              type: integer
  *              description: usuario que crea
  *              required: true
  *        - name: usro_nombre
@@ -114,6 +114,8 @@ router.post('/logIn', logIn);
  * /users/:
  *   get:
  *     description: Consulta de usuarios
+ *     security: 
+ *       - Bearer: []
  *     tags:
  *       - get users
  *     responses:
@@ -138,6 +140,8 @@ router.get('/',auth.isAdmin, getUsers);
  * /users/:
  *   patch:
  *     description: Actualización de usuarios
+ *     security: 
+ *       - Bearer: []
  *     tags:
  *       - update users
  *     parameters:
@@ -169,13 +173,15 @@ router.patch('/:id', auth.required, updateUser);
  * /users/delete:
  *   patch:
  *     description: Borrado lógico de usuarios
+ *     security: 
+ *       - Bearer: []
  *     tags:
  *       - delete logical users
  *     parameters:
  *        - name: id
  *          in: querystring
  *          schema:
- *              type: string
+ *              type: integer
  *              description: user id
  *              required: true
  *     responses:

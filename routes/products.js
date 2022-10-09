@@ -13,6 +13,8 @@ const {
  * /products:
  *   get:
  *     description: obtener el listado de productos
+ *     security: 
+ *       - Bearer: []
  *     tags:
  *       - get products
  *     responses:
@@ -38,6 +40,8 @@ router.get('/',auth.required, getProducts)
  * /products/addProduct:
  *   post:
  *     description: Agregar artículo a el listado de productos
+ *     security: 
+ *       - Bearer: []
  *     tags:
  *       - add products
  *     parameters:
@@ -50,7 +54,7 @@ router.get('/',auth.required, getProducts)
  *        - name: ctPr_idCtlgCtgr
  *          in: body
  *          schema:
- *              type: int
+ *              type: integer
  *              description: categoría del producto
  *              required: true
  *        - name: ctPr_costo
@@ -88,13 +92,15 @@ router.post('/addProduct',auth.isAdmin, addProduct);
  * /products/:id:
  *   patch:
  *     description: Actualizar articulo del listado de productos
+ *     security: 
+ *       - Bearer: []
  *     tags:
  *       - update product
  *     parameters:
  *        - name: id
  *          in: querystring
  *          schema:
- *              type: int
+ *              type: integer
  *              description: Id del producto
  *              required: true
  *        - name: ctPr_descripcion
@@ -106,7 +112,7 @@ router.post('/addProduct',auth.isAdmin, addProduct);
  *        - name: ctPr_idCtlgCtgr
  *          in: body
  *          schema:
- *              type: int
+ *              type: integer
  *              description: categoría del producto
  *              required: true
  *        - name: ctPr_costo
@@ -138,19 +144,21 @@ router.patch('/:id', auth.isAdmin, updateProduct);
  * /products/delete/id:
  *   patch:
  *     description: borrado lógido del listado de productos
+ *     security: 
+ *       - Bearer: []
  *     tags:
  *       - delete product
  *     parameters:
  *        - name: id
  *          in: body
  *          schema:
- *              type: int
+ *              type: integer
  *              description: id del producto
  *              required: true
  *        - name: ctPr_activo
  *          in: body
  *          schema:
- *              type: int
+ *              type: integer
  *              description: estatus del producto
  *              required: true
  *     responses:

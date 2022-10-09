@@ -12,7 +12,9 @@ const {
  * @openapi
  * /category:
  *   get:
- *     description: obtener el listado de categorias de productos
+ *     description: obtener el listado de categorias
+ *     security: 
+ *       - Bearer: []
  *     tags:
  *       - get category
  *     responses:
@@ -37,7 +39,9 @@ router.get('/',auth.required,  getCategories);
  * @openapi
  * /category/addCategory:
  *   post:
- *     description: Agregar categoria de productos
+ *     description: Agregar categoria 
+ *     security: 
+ *       - Bearer: []
  *     tags:
  *       - add category
  *     parameters:
@@ -50,7 +54,7 @@ router.get('/',auth.required,  getCategories);
  *        - name: ctCt_activo
  *          in: body
  *          schema:
- *              type: int
+ *              type: integer
  *              description: estatus de la categoria
  *              required: true
  *     responses:
@@ -76,6 +80,8 @@ router.post('/addCategory',auth.isAdmin,  addCategory);
  * /category/:id:
  *   patch:
  *     description: actualizar categoria de productos
+ *     security: 
+ *       - Bearer: []
  *     tags:
  *       - update category
  *     parameters:
@@ -107,14 +113,16 @@ router.patch('/:id',auth.isAdmin,  updateCategory);
 * @openapi
 * /category/delete/:id:
 *   patch:
-*     description: borrado logico de categoria de productos
+*     description: borrado logico de categoria de producto
+*     security: 
+*       - Bearer: []
 *     tags:
 *       - delete category
 *     parameters:
 *        - name: ctCt_activo
 *          in: body
 *          schema:
-*              type: int
+*              type: integer
 *              description: estatus de la categoria
 *              required: true
 *     responses:
