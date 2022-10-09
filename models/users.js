@@ -4,6 +4,8 @@ const {Sequelize, Datatypes, Op} = require('sequelize');
 const sequelize = require('../config/db.js');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken'); 
+const secret = require('../config/secret');  
+
 
 
 const User = sequelize.define('usuarios',{
@@ -55,7 +57,6 @@ const User = sequelize.define('usuarios',{
 },
 {
 timestamps:false
-
 });
 
 

@@ -3,25 +3,21 @@ const {expressjwt} =  require('express-jwt');
 
 function getTokenFromHeader(req){
     console.log(req.headers.authorization);
-    if(req.headers.authorization && req.headers.authorization.split(' ')[0]=='Bearer'){
+    if(req.headers.authorization && req.headers.authorization.split(' ')[0]=='Bearer')
         return req.headers.authorization.split(' ')[1];
-    }
 }
 
 const auth ={
     required : function(req, res, next){
-        if(!req.auth||!req.auth.user){
+        if(!req.auth||!req.auth.user)
             return res.sendStatus(401);
-        }
-        next();
+        return next();
     },
     isAdmin: function (req, res, next){
-        if(!req.auth){
+        if(!req.auth)
             return res.sendStatus(401);
-        }
-        if(!req.auth.user=='admin'){
-            return res.sendStatus(403);
-        }
+        if(!(req.auth.user.substring(0,5)=='admin'))
+            return res.sendStatus(401);
         next();
     },
     opcional : expressjwt ({
@@ -30,7 +26,7 @@ const auth ={
         userProperty: 'user',
         getToken: getTokenFromHeader,
         credentialsRequired:false
-})
+    })
 }
 
 module.exports = auth;

@@ -25,7 +25,8 @@ async function getUsers(req, res){
 async function updateUser(req, res){
     const id=req.params.id;
     const user = req.body;
-    const update = await User.update(user, {where:{usro_idUsro:id}});
+    console.log("entre");
+    const userUpdate = await User.update(user, {where:{usro_idUsro:id}});
     const  userUpdated = await User.findByPk(id);
     res.status(200).json(userUpdated);
 }
@@ -35,12 +36,34 @@ async function deleteUser(req, res){
     const user = req.body;
     const update = await User.update(user, {where:{usro_idUsro:id}});
     const  userUpdated = await User.findByPk(id);
-    res.status(200).json(update);
+    res.status(200).json(userUpdated);
+}
+
+async function logIn(req, res){
+    const body = req.body;
+    const user = await User.findOne({where: {usro_nmbrUsro:body["usro_nmbrUsro"]}});
+    if(!user){
+        return res.status(404).json({error: "usuario no encontrado"});
+    }
+    console.log(user.usro_psswHash);
+    console.log(user.usro_psswSalt); 
+    if(User.validatePassword(body["usro_password"], user.usro_psswSalt, user.usro_psswHash)){
+        // return res.status(200).json({mensaje:"Bienvenido"});
+       return res.status(200).json({
+            user:  user.username,
+            email: user.email,
+            token : User.generateJWT(user)
+       });
+    }
+    else{
+        return res.status(400).json({error: "password incorrecto"});
+    } 
 }
 
 module.exports = {
     signUp, 
     getUsers,
     updateUser,
-    deleteUser
+    deleteUser,
+    logIn
     };

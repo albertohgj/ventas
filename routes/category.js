@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const auth = require('../config/auth');
 
 const {
     addCategory,
@@ -7,12 +8,9 @@ const {
     deleteCategory
 } = require('../controllers/category');
 
-
-router.get('/', getCategories)
-router.post('/addCategory', addCategory);
-router.patch('/:id', updateCategory);
-router.patch('/:id', deleteCategory);
-
-
+router.get('/',auth.required,  getCategories);
+router.post('/addCategory',auth.isAdmin,  addCategory);
+router.patch('/:id',auth.isAdmin,  updateCategory);
+router.patch('/:id',auth.isAdmin,  deleteCategory);
 
 module.exports = router;
