@@ -1,3 +1,4 @@
 # ventas
 
-PROYECTO FINAL GRUPO 2 VENTAS
+PROYECTO FINAL EQUIPO 18 VENTAS
+Julio Alberto Hernández Godínez
